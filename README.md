@@ -1,8 +1,8 @@
-# Project 3 - *Name of App Here*
+# Project 3 - *UUTwitter*
 
-**Name of your app** is a basic twitter app to read your tweets.
+**UUTwitter** is a basic twitter app to read your tweets.
 
-Time spent: **X** hours spent in total
+Time spent: **4** hours spent in total
 
 ## User Stories
 
