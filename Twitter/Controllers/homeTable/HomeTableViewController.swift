@@ -21,7 +21,7 @@ class HomeTableViewController: UITableViewController {
         
         TwitterAPICaller.client?.getDictionariesRequest(url: TWITTER_Pull_URL, parameters: myParams as [String : Any], success: {
             (tweets: [NSDictionary]) in
-            self.tweetArray.removeAll()
+            self.tweetArray.removeAll()  // to refresh the tweets
             for tweet in tweets {
                 self.tweetArray.append(tweet)
             }
@@ -65,6 +65,13 @@ class HomeTableViewController: UITableViewController {
         loadTweets()
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
+//        self.tableView.estimatedRowHeight = 150
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super .viewDidAppear(animated)
+        self.loadTweets()
+//        self.tableView.estimatedRowHeight = 150
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -79,6 +86,11 @@ class HomeTableViewController: UITableViewController {
         if let imageData = data {
             cell.profileImageView.image = UIImage(data: imageData)
         }
+        
+        cell.setLike(tweetArray[indexPath.row]["favorited"] as! Bool)
+        cell.setRetweet(tweetArray[indexPath.row]["retweeted"] as! Bool)
+        cell.tweetId = tweetArray[indexPath.row]["id"] as! Int
+        
         return cell
     }
 

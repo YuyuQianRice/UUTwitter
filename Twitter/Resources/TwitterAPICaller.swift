@@ -64,4 +64,46 @@ class TwitterAPICaller: BDBOAuth1SessionManager {
         })
     }
     
+    func postTweets(tweetString: String, success: @escaping () -> (), failure: @escaping (Error) -> ()){
+        TwitterAPICaller.client?.post(TWITTER_POST_URL, parameters: ["status": tweetString], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
+    func likeTweets(tweetId: Int, success: @escaping () -> (), failure: @escaping (Error) -> ()){
+        TwitterAPICaller.client?.post(TWITTER_LIKE_URL, parameters: ["id": tweetId], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
+    func unlikeTweets(tweetId: Int, success: @escaping () -> (), failure: @escaping (Error) -> ()){
+        TwitterAPICaller.client?.post(TWITTER_UNLIKE_URL, parameters: ["id": tweetId], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
+    func retweets(tweetId: Int, success: @escaping () -> (), failure: @escaping (Error) -> ()){
+        let TWITTER_RETWEET_URL = "https://api.twitter.com/1.1/statuses/retweet/\(tweetId).json"
+
+        TwitterAPICaller.client?.post(TWITTER_RETWEET_URL, parameters: ["id": tweetId], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
+    
+    func unretweets(tweetId: Int, success: @escaping () -> (), failure: @escaping (Error) -> ()){
+        let TWITTER_UNRETWEET_URL = "https://api.twitter.com/1.1/statuses/unretweet/\(tweetId).json"
+        TwitterAPICaller.client?.post(TWITTER_UNRETWEET_URL, parameters: ["id": tweetId], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            success()
+        }, failure: { (task: URLSessionDataTask?, error: Error) in
+            failure(error)
+        })
+    }
 }
