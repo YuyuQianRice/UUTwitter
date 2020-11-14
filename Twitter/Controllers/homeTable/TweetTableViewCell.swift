@@ -61,14 +61,14 @@ class TweetTableViewCell: UITableViewCell {
         if (tweetId != -1) {
 //            print("\(self.tweetId)")
             if (isRetweetedVar) {
-                TwitterAPICaller.client?.retweets(tweetId: self.tweetId, success: {
+                TwitterAPICaller.client?.unretweets(tweetId: self.tweetId, success: {
                     self.setRetweet(false)
                 }, failure: {
                     (err) in
                     print("Can not retweet \(err)")
                 })
             } else {
-                TwitterAPICaller.client?.unretweets(tweetId: self.tweetId, success: {
+                TwitterAPICaller.client?.retweets(tweetId: self.tweetId, success: {
                     self.setRetweet(true)
                 }, failure: {
                     (err) in

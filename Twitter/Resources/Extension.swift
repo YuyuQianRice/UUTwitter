@@ -46,4 +46,5 @@ let TWITTER_Pull_URL = "https://api.twitter.com/1.1/statuses/home_timeline.json"
 let TWITTER_POST_URL = "https://api.twitter.com/1.1/statuses/update.json"
 let TWITTER_LIKE_URL = "https://api.twitter.com/1.1/favorites/create.json"
 let TWITTER_UNLIKE_URL = "https://api.twitter.com/1.1/favorites/destroy.json"
+let TWITTER_GETUSER_URL = "https://api.twitter.com/1.1/users/lookup.json"
 
